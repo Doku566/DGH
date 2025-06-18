@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - IT Inventory System{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome, {{ current_user.username if current_user.is_authenticated else "Guest" }}!</h1>
+    <p class="lead">This is your IT Inventory System dashboard.</p>
+    <hr class="my-4">
+    {% if current_user.is_authenticated %}
+        <p>From here you can manage hardware, software, and view system activity.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">View Inventory</a> {# Placeholder #}
+    {% else %}
+        <p>Please <a href="{{ url_for('auth.login') }}">log in</a> or <a href="{{ url_for('auth.register') }}">register</a> to manage your inventory.</p>
+    {% endif %}
+</div>
+
+<h2>Quick Actions (Placeholders)</h2>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add New Hardware</h5>
+                <p class="card-text">Quickly add a new piece of hardware to the inventory.</p>
+                <a href="#" class="btn btn-primary">Add Hardware</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add New Software</h5>
+                <p class="card-text">Register a new software title or license.</p>
+                <a href="#" class="btn btn-primary">Add Software</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Search Inventory</h5>
+                <p class="card-text">Find specific items within your inventory records.</p>
+                <a href="#" class="btn btn-secondary">Search</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

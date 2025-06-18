@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Add New Software - IT Inventory System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Add New Software Item</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('main.add_software') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            {{ form.name.label(class="form-control-label") }}
+                            {{ form.name(class="form-control " + ("is-invalid" if form.name.errors else ""), placeholder="e.g., Microsoft Office 2021, Adobe Photoshop CC") }}
+                            {% if form.name.errors %}<div class="invalid-feedback">{% for error in form.name.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.version.label(class="form-control-label") }}
+                            {{ form.version(class="form-control " + ("is-invalid" if form.version.errors else ""), placeholder="e.g., 21.0.3, v3.5") }}
+                            {% if form.version.errors %}<div class="invalid-feedback">{% for error in form.version.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.license_key.label(class="form-control-label") }}
+                        {{ form.license_key(class="form-control " + ("is-invalid" if form.license_key.errors else ""), placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX") }}
+                        {% if form.license_key.errors %}<div class="invalid-feedback">{% for error in form.license_key.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.purchase_date.label(class="form-control-label") }}
+                            {{ form.purchase_date(class="form-control " + ("is-invalid" if form.purchase_date.errors else "")) }}
+                            {% if form.purchase_date.errors %}<div class="invalid-feedback">{% for error in form.purchase_date.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.expiry_date.label(class="form-control-label") }}
+                            {{ form.expiry_date(class="form-control " + ("is-invalid" if form.expiry_date.errors else ""), help_text="For subscription licenses") }}
+                            {% if form.expiry_date.errors %}<div class="invalid-feedback">{% for error in form.expiry_date.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.seats.label(class="form-control-label") }}
+                            {{ form.seats(class="form-control " + ("is-invalid" if form.seats.errors else ""), placeholder="e.g., 1, 10, Unlimited") }}
+                            {% if form.seats.errors %}<div class="invalid-feedback">{% for error in form.seats.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.supplier.label(class="form-control-label") }}
+                            {{ form.supplier(class="form-control " + ("is-invalid" if form.supplier.errors else ""), placeholder="e.g., Microsoft, Adobe, Local Vendor") }}
+                            {% if form.supplier.errors %}<div class="invalid-feedback">{% for error in form.supplier.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.installation_location.label(class="form-control-label") }}
+                        {{ form.installation_location(class="form-control " + ("is-invalid" if form.installation_location.errors else ""), placeholder="e.g., Server XYZ, Marketing Dept PCs") }}
+                        {% if form.installation_location.errors %}<div class="invalid-feedback">{% for error in form.installation_location.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.description.label(class="form-control-label") }}
+                        {{ form.description(class="form-control " + ("is-invalid" if form.description.errors else ""), rows="3", placeholder="Any additional notes, license terms...") }}
+                        {% if form.description.errors %}<div class="invalid-feedback">{% for error in form.description.errors %}<span>{{ error }}</span>{% endfor %}</div>{% endif %}
+                    </div>
+                    <div class="form-group mt-4">
+                        {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
